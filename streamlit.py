@@ -2,18 +2,18 @@ import streamlit as st
 import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-
+# load trained model
 bayes = joblib.load('naive_bayes_meessages (1).pkl')
 
 
-# Load TF-IDF vectorizer
+# load tfidf vectorizer
 tfidf_vec = joblib.load('tfidf_vectorizer.pkl')
 
-# Function to preprocess input text
+# data transform
 def preprocess_text(text):
     return tfidf_vec.transform([text])
 
-# Function to classify messages
+# classify messages
 def classify_message(model, text):
     test_input = preprocess_text(text)
     result = model.predict(test_input)[0]
